@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Albert_Sans, Fira_Code } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const albertSans = Albert_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const firaCode = Fira_Code({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   title: "Simple NPS, CSAT, and CES Surveys for Small Teams",
   description: "A lightweight feedback tool that lets startups and small businesses send branded NPS, CSAT, or CES surveys by email. No logins, no dashboards, just signal.",
   keywords: ["NPS", "CSAT", "CES", "surveys", "feedback", "startups", "small business", "customer experience", "email surveys"],
-  authors: [{ name: "blank, dave" }],
-  creator: "blank, dave",
-  publisher: "Blank Digital Media",
+  authors: [{ name: "Dave Blank" }],
+  creator: "Dave Blank",
+  publisher: "Blank Survey",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -71,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background text-foreground antialiased`}
+        className={`${albertSans.variable} ${firaCode.variable} min-h-screen bg-background text-foreground antialiased`}
       >
         <ThemeProvider
           attribute="class"

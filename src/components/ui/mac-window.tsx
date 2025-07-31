@@ -11,12 +11,12 @@ interface MacWindowProps {
 export function MacWindow({ title = "TeachText", children, className, emailMode = false }: MacWindowProps) {
   return (
     <div className={cn(
-      "bg-card border-2 border-border rounded-none shadow-xl",
+      "bg-card border-2 border-border rounded-none shadow-xl overflow-hidden",
       className
     )}>
       {/* Title Bar */}
       {emailMode ? (
-        <div className="bg-secondary border-b-2 border-border px-4 py-3 flex items-center justify-between text-xs font-mono">
+        <div className="bg-secondary border-b-2 border-border px-4 py-3 flex items-center justify-between text-xs">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-muted border border-border"></div>
@@ -52,7 +52,7 @@ export function MacWindow({ title = "TeachText", children, className, emailMode 
       )}
       
       {/* Content Area */}
-      <div className="bg-card p-6 min-h-[300px] font-mono text-sm text-card-foreground text-left">
+      <div className="bg-card p-6 min-h-[300px] text-sm text-card-foreground text-left">
         {children}
       </div>
     </div>

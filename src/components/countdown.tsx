@@ -44,7 +44,7 @@ export function Countdown() {
   return (
     <div className="text-sm text-muted-foreground">
       <div className="mb-2">Launching in:</div>
-      <div className="font-mono text-lg">
+      <div className="text-lg font-semibold">
         {timeLeft.days} days, {formatTime(timeLeft.hours)}h {formatTime(timeLeft.minutes)}m {formatTime(timeLeft.seconds)}s
       </div>
     </div>
