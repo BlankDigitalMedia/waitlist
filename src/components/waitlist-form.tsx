@@ -1,110 +1,107 @@
 "use client";
 
 import { useState } from "react";
-
-// Re-export shadcn UI components
-export { Input } from "@/components/ui/input";
-export { Textarea } from "@/components/ui/textarea";
-export { Button } from "@/components/ui/button";
-
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useMutation } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { Loader2, CheckCircle } from "lucide-react";
 
-interface WaitlistFormProps {
-  onSuccess?: () => void;
-}
+const formSchema = z.object({
+  email: z.string().email("Please enter a valid email address"),
+  feedback: z.string().optional(),
+});
 
-export function WaitlistForm({ onSuccess }: WaitlistFormProps) {
-  const [email, setEmail] = useState("");
-  const [feedback, setFeedback] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+type FormData = z.infer<typeof formSchema>;
+
+export function WaitlistForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const addToWaitlist = useMutation(api.waitlist.addToWaitlist);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!email.trim()) return;
-    
-    setIsLoading(true);
-    
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      feedback: "",
+    },
+  });
+
+  const onSubmit = async (data: FormData) => {
     try {
-      // Simple submit handler - console.log for now
-      console.log({
-        email: email.trim(),
-        feedback: feedback.trim(),
-        timestamp: new Date().toISOString()
+      await addToWaitlist({
+        email: data.email,
       });
-      
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       setIsSubmitted(true);
-      onSuccess?.();
+      toast.success("Successfully joined the waitlist!");
     } catch (error) {
-      console.error("Failed to submit form:", error);
-    } finally {
-      setIsLoading(false);
+      if (error instanceof Error && error.message.includes("already registered")) {
+        toast.error("This email is already registered for our waitlist.");
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     }
   };
 
   if (isSubmitted) {
     return (
-      <div 
-        className="p-6 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800"
-        role="alert"
-        aria-live="polite"
-      >
-        <p className="text-green-800 dark:text-green-200">
-          Thanks for joining! We&apos;ll be in touch soon.
-        </p>
+      <div className="w-full max-w-md mx-auto">
+        <div className="flex flex-col items-center text-center space-y-4 p-6">
+          <CheckCircle className="h-12 w-12 text-green-500" />
+          <h3 className="text-lg font-semibold">You&apos;re on the list!</h3>
+          <p className="text-sm text-muted-foreground">
+            We&apos;ll notify you when we&apos;re ready to launch.
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-      <div>
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          disabled={isLoading}
-          required
+    <div className="w-full max-w-md mx-auto">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <div className="space-y-2">
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            {...form.register("email")}
+            disabled={form.formState.isSubmitting}
+          />
+          {form.formState.errors.email && (
+            <p className="text-sm text-red-500">
+              {form.formState.errors.email.message}
+            </p>
+          )}
+        </div>
+
+        <div className="space-y-2">
+          <Textarea
+            placeholder="Optional: What do you wish feedback tools did better?"
+            {...form.register("feedback")}
+            disabled={form.formState.isSubmitting}
+            className="h-20 resize-none"
+          />
+        </div>
+
+        <Button
+          type="submit"
           className="w-full"
-          aria-label="Email address"
-          aria-describedby="email-hint"
-          aria-invalid={email.trim() && !email.includes("@") ? "true" : "false"}
-        />
-        <div id="email-hint" className="sr-only">
-          Enter your email address to join the waitlist
-        </div>
-      </div>
-      
-      <div>
-        <Textarea
-          placeholder="Optional: What do you wish feedback tools did better?"
-          value={feedback}
-          onChange={(e) => setFeedback(e.target.value)}
-          disabled={isLoading}
-          className="w-full h-20 resize-none"
-          aria-label="Feedback about current feedback tools (optional)"
-          aria-describedby="feedback-hint"
-        />
-        <div id="feedback-hint" className="sr-only">
-          Optional feedback about what you wish current feedback tools did better
-        </div>
-      </div>
-      
-      <Button 
-        type="submit" 
-        disabled={isLoading || !email.trim()}
-        className="w-full bg-black hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 disabled:opacity-50"
-        aria-label={isLoading ? "Submitting waitlist form" : "Join the waitlist"}
-      >
-        {isLoading ? "Joining..." : "Join the waitlist"}
-      </Button>
-    </form>
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Joining...
+            </>
+          ) : (
+            "Join the waitlist"
+          )}
+        </Button>
+      </form>
+    </div>
   );
 }
