@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Blank Survey",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Simple NPS, CSAT, and CES Surveys for Small Teams",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Simple NPS, CSAT, and CES Surveys for Small Teams",
     description: "Send branded email surveys without the bloat. Built for indie founders and small businesses.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
     creator: "@blankdigitalmedia",
   },
   robots: {
