@@ -24,12 +24,21 @@ export default function Home() {
           
           <div className="text-center space-y-8">
           <div className="space-y-4">
-            <MacWindow title="Founder Note" className="max-w-3xl mx-auto">
-              <div className="space-y-2 mb-6 text-xs">
-                <div>date: 7/31/2025</div>
-                <div>from: blank, dave</div>
-                <div className="italic">to: Early Stage Founders & Small Business Owners</div>
-                <div>subject: <strong>Understanding your customers shouldn&apos;t be complex or costly</strong></div>
+            <MacWindow title="Founder Note" emailMode={true} className="max-w-3xl mx-auto">
+              {/* Email Headers */}
+              <div className="space-y-2 mb-6 text-xs bg-muted/30 px-4 py-3 border-b border-border">
+                <div className="flex">
+                  <span className="w-12 text-muted-foreground">FROM:</span>
+                  <span className="font-mono">blank, dave &lt;dave@blank.com&gt;</span>
+                </div>
+                <div className="flex">
+                  <span className="w-12 text-muted-foreground">TO:</span>
+                  <span className="font-mono italic">Early Stage Founders & Small Business Owners</span>
+                </div>
+                <div className="flex">
+                  <span className="w-12 text-muted-foreground">SUBJ:</span>
+                  <span className="font-mono font-bold">Understanding your customers shouldn&apos;t be complex or costly</span>
+                </div>
               </div>
               
               <div className="space-y-4 text-sm leading-6">
