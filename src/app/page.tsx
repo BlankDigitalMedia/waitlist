@@ -29,7 +29,7 @@ export default function Home() {
               <div className="space-y-2 mb-6 text-xs bg-muted/30 px-4 py-3 border-b border-border">
                 <div className="flex">
                   <span className="w-12 text-muted-foreground">FROM:</span>
-                  <span className="font-mono">blank, dave &lt;dave@blank.com&gt;</span>
+                  <span className="font-mono">blank, dave</span>
                 </div>
                 <div className="flex">
                   <span className="w-12 text-muted-foreground">TO:</span>
