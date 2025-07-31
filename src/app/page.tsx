@@ -3,6 +3,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Countdown } from "@/components/countdown";
 import { Roadmap } from "@/components/roadmap";
 import { Badge } from "@/components/ui/badge";
+import { MacWindow } from "@/components/ui/mac-window";
 
 export default function Home() {
   return (
@@ -23,28 +24,30 @@ export default function Home() {
           
           <div className="text-center space-y-8">
           <div className="space-y-4">
-            <div className="grid gap-y-1 text-sm font-medium mb-8 text-left max-w-2xl mx-auto">
-              <div><strong>date:</strong> 7/31/2025</div>
-              <div><strong>from:</strong> blank, dave</div>
-              <div><strong>to:</strong> Early Stage Founders & Small Business Owners</div>
-              <div><strong>subject:</strong> <strong>Understanding your customers shouldn&apos;t be complex or costly</strong></div>
-            </div>
-            
-            <div className="text-left max-w-2xl mx-auto space-y-4">
-              <p>Hey, I&apos;m blank but some people call me Dave.</p>
-              
-              <p>I&apos;ve worked in customer experience tech for 7 years and spent nights and weekends helping small businesses with automation and marketing.</p>
-              
-              <p>The pattern&apos;s always the same. The tools I specialize in are too expensive or too bloated for the teams who need them most. Big companies get smarter and faster while <strong>small teams get stuck with clunky software or nothing at all.</strong></p>
-              
-              <p>I&apos;m building this to flip that. I want to make it dead simple for startups and scrappy teams to give their customers a world-class experience. No monthly fee the size of a car payment. No 10-tab dashboards. <strong>Just one clean survey, sent in seconds.</strong></p>
-              
-              <div className="mt-8">
-                <h2 className="font-semibold mb-4">What it is</h2>
-                <p>A lightweight survey tool that lets you send branded NPS, CSAT, or CES surveys over email.</p>
-                <p className="mt-4">You get real feedback, fast. Your customers get a clean, on-brand experience. No logins. No setup tutorials. Just signal.</p>
+            <MacWindow title="Founder Note" className="max-w-3xl mx-auto">
+              <div className="space-y-2 mb-6 text-xs">
+                <div>date: 7/31/2025</div>
+                <div>from: blank, dave</div>
+                <div className="italic">to: Early Stage Founders & Small Business Owners</div>
+                <div>subject: <strong>Understanding your customers shouldn't be complex or costly</strong></div>
               </div>
-            </div>
+              
+              <div className="space-y-4 text-sm leading-6">
+                <p>Hey, I'm blank but some people call me Dave.</p>
+                
+                <p>I've worked in customer experience tech for 7 years and spent nights and weekends helping small businesses with automation and marketing.</p>
+                
+                <p>The pattern's always the same. The tools I specialize in are too expensive or too bloated for the teams who need them most. Big companies get smarter and faster while <strong>small teams get stuck with clunky software or nothing at all.</strong></p>
+                
+                <p>I'm building this to flip that. I want to make it dead simple for startups and scrappy teams to give their customers a world-class experience. No monthly fee the size of a car payment. No 10-tab dashboards. <strong>Just one clean survey, sent in seconds.</strong></p>
+                
+                <div className="mt-6">
+                  <div className="mb-3">What it is</div>
+                  <p>A lightweight survey tool that lets you send branded NPS, CSAT, or CES surveys over email.</p>
+                  <p className="mt-3">You get real feedback, fast. Your customers get a clean, on-brand experience. No logins. No setup tutorials. Just signal.</p>
+                </div>
+              </div>
+            </MacWindow>
           </div>
 
           {/* Waitlist Form */}
