@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/next";
 
 const albertSans = Albert_Sans({
   variable: "--font-sans",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Simple NPS, CSAT, and CES Surveys for Small Teams",
+        alt: "Simple Surveys for Small Teams",
       },
     ],
   },
@@ -84,6 +85,7 @@ export default function RootLayout({
             <Toaster />
           </ConvexClientProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
