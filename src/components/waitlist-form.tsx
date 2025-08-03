@@ -21,7 +21,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function WaitlistForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const addToWaitlist = useMutation(api.waitlist.addToWaitlist);
+  const submitToWaitlist = useMutation(api.waitlist.submit);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -33,8 +33,9 @@ export function WaitlistForm() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await addToWaitlist({
+      await submitToWaitlist({
         email: data.email,
+        feedback: data.feedback,
       });
       setIsSubmitted(true);
       toast.success("Successfully joined the waitlist!");

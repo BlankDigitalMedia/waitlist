@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@convex-dev/resend": "^0.1.7",
     "@hookform/resolvers": "^5.2.1",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
+    "@react-email/components": "^0.4.0",
+    "@react-email/render": "^1.1.4",
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,6 +26,7 @@
     "next-themes": "^0.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-email": "^4.2.6",
     "react-hook-form": "^7.61.1",
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",

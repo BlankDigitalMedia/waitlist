@@ -13,6 +13,8 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as emails_ThankYouEmail from "../emails/ThankYouEmail.js";
+import type * as emails from "../emails.js";
 import type * as waitlist from "../waitlist.js";
 
 /**
@@ -24,6 +26,8 @@ import type * as waitlist from "../waitlist.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  "emails/ThankYouEmail": typeof emails_ThankYouEmail;
+  emails: typeof emails;
   waitlist: typeof waitlist;
 }>;
 export declare const api: FilterApi<

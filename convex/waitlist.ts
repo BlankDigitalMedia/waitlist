@@ -1,4 +1,5 @@
 import { mutation, query } from "./_generated/server";
+import { internal } from "./_generated/api";
 import { v } from "convex/values";
 
 export const addToWaitlist = mutation({
@@ -25,6 +26,26 @@ export const addToWaitlist = mutation({
       createdAt: Date.now(),
       status: "pending",
     });
+
+    // Get the user's position in the waitlist
+    const allEntries = await ctx.db
+      .query("waitlist")
+      .withIndex("by_created_at")
+      .collect();
+    
+    const position = allEntries.length;
+
+    // Send thank you email
+    try {
+      await ctx.scheduler.runAfter(0, internal.emails.sendThankYouEmail, {
+        to: args.email,
+        name: args.name,
+        position: position,
+      });
+    } catch (error) {
+      console.error("Failed to schedule thank you email:", error);
+      // Don't throw here - we still want the waitlist signup to succeed
+    }
 
     return waitlistId;
   },

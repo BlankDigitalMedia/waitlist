@@ -1,33 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blank Survey Waitlist
 
-## Getting Started
+A beautiful, modern waitlist application for Blank Survey with automated thank you emails. Built with Next.js, Convex, and Resend.
 
-First, run the development server:
+## Features
 
+- ✨ Modern, responsive waitlist form
+- 📧 Automated thank you emails with waitlist position
+- 📊 Real-time waitlist statistics
+- 🎨 Beautiful UI with dark/light mode support
+- 🔐 Secure backend with Convex
+- 📱 Mobile-friendly design
+
+## Quick Start
+
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Set Up Convex
+```bash
+npx convex dev
+```
+This will create your Convex deployment and generate the `.env.local` file.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Set Up Email (Optional)
+To enable automated thank you emails:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a [Resend](https://resend.com) account
+2. Get your API key from the dashboard
+3. Set the environment variable:
+```bash
+npx convex env set RESEND_API_KEY your_api_key_here
+```
+
+### 4. Start Development Server
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the application.
+
+## Email Configuration
+
+The application sends automated thank you emails when users join the waitlist. To set this up:
+
+1. **Create Resend Account**: Go to [resend.com](https://resend.com) and sign up
+2. **Get API Key**: Navigate to API Keys and create a new key
+3. **Set Environment Variable**: 
+   ```bash
+   npx convex env set RESEND_API_KEY re_your_api_key_here
+   ```
+4. **Update Email Domain** (for production): Edit `convex/emails.ts` and update the `from` field with your verified domain
+
+## Development
+
+- **Frontend**: Next.js with TypeScript, Tailwind CSS, and Framer Motion
+- **Backend**: Convex for real-time database and functions
+- **Email**: Resend with React Email templates
+- **UI Components**: Custom components with Radix UI primitives
+
+## Project Structure
+
+```
+├── src/
+│   ├── app/                 # Next.js app directory
+│   ├── components/          # React components
+│   └── lib/                # Utilities
+├── convex/
+│   ├── emails.ts           # Email sending functions
+│   ├── waitlist.ts         # Waitlist management
+│   ├── schema.ts           # Database schema
+│   └── emails/             # Email templates
+└── public/                 # Static assets
+```
+
+## Deployment
+
+1. **Deploy to Vercel**: Connect your GitHub repository to Vercel
+2. **Deploy Convex**: Run `npx convex deploy --prod`
+3. **Set Production Environment Variables**: Set `RESEND_API_KEY` in your production Convex deployment
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Convex Documentation](https://docs.convex.dev)
+- [Resend Documentation](https://resend.com/docs)
 
 ## Deploy on Vercel
 

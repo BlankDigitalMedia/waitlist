@@ -18,7 +18,7 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "Simple Surveys for Small Teams",
-  description: "A lightweight feedback tool that lets startups and small businesses send branded NPS, CSAT, or CES surveys by email. No logins, no dashboards, just signal.",
+  description: "A lightweight feedback tool that lets startups and small businesses send branded NPS, CSAT, or CES surveys by email.",
   keywords: ["NPS", "CSAT", "CES", "surveys", "feedback", "startups", "small business", "customer experience", "email surveys"],
   authors: [{ name: "Dave Blank" }],
   creator: "Dave Blank",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://blank-survey-waitlist.vercel.app",
     title: "Simple Surveys for Small Teams",
-    description: "A lightweight feedback tool that lets startups and small businesses send branded NPS, CSAT, or CES surveys by email. No logins, no dashboards, just signal.",
+    description: "A lightweight feedback tool that lets startups and small businesses send branded NPS, CSAT, or CES surveys by email.",
     siteName: "Blank Survey",
     images: [
       {
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Simple Surveys for Small Teams",
-    description: "Send branded email surveys without the bloat. Built for indie founders and small businesses.",
+    description: "Send branded email surveys without the bloat. Built for early stage founders and small businesses.",
     images: ["/og-image.png"],
     creator: "@blankdigitalmedia",
   },
