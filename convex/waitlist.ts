@@ -35,17 +35,9 @@ export const addToWaitlist = mutation({
     
     const position = allEntries.length;
 
-    // Send thank you email
-    try {
-      await ctx.scheduler.runAfter(0, internal.emails.sendThankYouEmail, {
-        to: args.email,
-        name: args.name,
-        position: position,
-      });
-    } catch (error) {
-      console.error("Failed to schedule thank you email:", error);
-      // Don't throw here - we still want the waitlist signup to succeed
-    }
+    // Send thank you email (DISABLED - email dependencies removed)
+    // You can re-enable this later when you add email functionality back
+    console.log(`Waitlist signup successful for ${args.email} - would send email to position ${position}`);
 
     return waitlistId;
   },
